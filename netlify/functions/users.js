@@ -1,4 +1,3 @@
-
 let users = [];
 
 exports.handler = async (event) => {
@@ -47,7 +46,6 @@ exports.handler = async (event) => {
     }
 
 
-    // OTHER METHODS
     return {
         statusCode: 405,
         body: JSON.stringify({
