@@ -1,51 +1,40 @@
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Website</title>
 
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 
 <body>
 
-    <!-- Header -->
     <header>
 
         <h1>My Website</h1>
 
         <p>Frontend + Backend + Database</p>
 
-        <nav>
-            <a href="/">Home</a>
-            <a href="#about">About</a>
-            <a href="#users">Users</a>
-        </nav>
-
     </header>
 
 
-    <!-- Main Content -->
     <main>
 
-        <!-- Welcome Section -->
+        <!-- Backend Test -->
+
         <section>
 
-            <h2>Welcome to My Website</h2>
-
-            <p>
-                This website is connected to a Flask backend
-                and SQLite database.
-            </p>
+            <h2>Test Backend</h2>
 
             <button onclick="getMessage()">
-                Test Backend
+                Connect to Backend
             </button>
 
             <p id="result"></p>
@@ -53,28 +42,13 @@
         </section>
 
 
-        <!-- About Section -->
-        <section id="about">
+        <!-- Add User -->
 
-            <h2>About</h2>
-
-            <p>
-                This is a simple full-stack website made using
-                HTML, CSS, JavaScript, Python Flask and SQLite.
-            </p>
-
-        </section>
-
-
-        <!-- Add User Section -->
         <section>
 
             <h2>Add User</h2>
 
             <form onsubmit="addUser(); return false;">
-
-                <label>Name:</label>
-                <br>
 
                 <input
                     type="text"
@@ -83,19 +57,12 @@
                     required
                 >
 
-                <br><br>
-
-                <label>Email:</label>
-                <br>
-
                 <input
                     type="email"
                     id="email"
                     placeholder="Enter your email"
                     required
                 >
-
-                <br><br>
 
                 <button type="submit">
                     Add User
@@ -108,13 +75,14 @@
         </section>
 
 
-        <!-- Users Section -->
-        <section id="users">
+        <!-- Display Users -->
+
+        <section>
 
             <h2>Users</h2>
 
             <button onclick="getUsers()">
-                Show All Users
+                Show Users
             </button>
 
             <div id="usersList"></div>
@@ -124,18 +92,15 @@
     </main>
 
 
-    <!-- Footer -->
     <footer>
 
-        <p>© 2026 My Website</p>
+        <p>My Website</p>
 
     </footer>
 
 
-    <!-- JavaScript -->
-    <script src="/static/script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 
 </html>
-```
