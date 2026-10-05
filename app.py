@@ -1,6 +1,5 @@
-
 from flask import Flask, render_template, jsonify, request
-from db import get_db, create_database
+from dbs.db import get_db, create_database
 
 app = Flask(__name__)
 
