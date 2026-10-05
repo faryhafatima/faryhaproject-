@@ -1,5 +1,7 @@
+let users = [];
 
 exports.handler = async (event) => {
+
     if (event.httpMethod !== "POST") {
         return {
             statusCode: 405,
@@ -10,24 +12,26 @@ exports.handler = async (event) => {
     }
 
     try {
+
         const data = JSON.parse(event.body);
 
-        const name = data.name;
-        const email = data.email;
+        const newUser = {
+            id: users.length + 1,
+            name: data.name,
+            email: data.email
+        };
 
-        // Temporary response
-        // Database will be connected in the next step
+        users.push(newUser);
 
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: "User received successfully!",
-                name: name,
-                email: email
+                message: "User added successfully!"
             })
         };
 
     } catch (error) {
+
         return {
             statusCode: 500,
             body: JSON.stringify({
