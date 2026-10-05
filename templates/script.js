@@ -1,36 +1,17 @@
-
 // Test backend
 function getMessage() {
-
-    fetch("/api/message")
-
-        .then(response => response.json())
-
-        .then(data => {
-
-            document.getElementById("result").innerText =
-                data.message;
-
-        })
-
-        .catch(error => {
-
-            console.log(error);
-
-        });
+    document.getElementById("result").innerText =
+        "Netlify backend is connected!";
 }
 
 
-// Add user to database
+// Add user
 function addUser() {
 
     const name = document.getElementById("name").value;
-
     const email = document.getElementById("email").value;
 
-
-    fetch("/api/users", {
-
+    fetch("/.netlify/functions/add-user", {
         method: "POST",
 
         headers: {
@@ -41,39 +22,29 @@ function addUser() {
             name: name,
             email: email
         })
-
     })
-
     .then(response => response.json())
-
     .then(data => {
 
         document.getElementById("userResult").innerText =
             data.message;
 
         document.getElementById("name").value = "";
-
         document.getElementById("email").value = "";
 
         getUsers();
-
     })
-
     .catch(error => {
-
         console.log(error);
-
     });
 }
 
 
-// Get users from database
+// Get users
 function getUsers() {
 
-    fetch("/api/users")
-
+    fetch("/.netlify/functions/get-users")
         .then(response => response.json())
-
         .then(users => {
 
             let output = "";
@@ -82,10 +53,7 @@ function getUsers() {
 
                 output += `
                     <p>
-                        ID: ${user.id}
-                        |
-                        Name: ${user.name}
-                        |
+                        Name: ${user.name} |
                         Email: ${user.email}
                     </p>
                 `;
@@ -94,12 +62,8 @@ function getUsers() {
 
             document.getElementById("usersList").innerHTML =
                 output || "<p>No users found.</p>";
-
         })
-
         .catch(error => {
-
             console.log(error);
-
         });
 }
