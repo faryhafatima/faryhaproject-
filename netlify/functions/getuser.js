@@ -1,3 +1,4 @@
+let users = [];
 
 exports.handler = async (event) => {
 
@@ -10,11 +11,8 @@ exports.handler = async (event) => {
         };
     }
 
-    // Temporary empty list
-    // Database will be connected in the next step
-
     return {
         statusCode: 200,
-        body: JSON.stringify([])
+        body: JSON.stringify(users)
     };
 };
