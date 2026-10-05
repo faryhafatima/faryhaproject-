@@ -2,35 +2,26 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Website</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
     <header>
-
         <h1>My Website</h1>
-
-        <p>Frontend + Backend + Database</p>
-
+        <p>Frontend + Netlify Backend</p>
     </header>
 
 
     <main>
 
-        <!-- Backend Test -->
-
+        <!-- Test Backend -->
         <section>
-
             <h2>Test Backend</h2>
 
             <button onclick="getMessage()">
@@ -38,17 +29,14 @@
             </button>
 
             <p id="result"></p>
-
         </section>
 
 
         <!-- Add User -->
-
         <section>
-
             <h2>Add User</h2>
 
-            <form onsubmit="addUser(); return false;">
+            <form id="userForm">
 
                 <input
                     type="text"
@@ -71,14 +59,11 @@
             </form>
 
             <p id="userResult"></p>
-
         </section>
 
 
-        <!-- Display Users -->
-
+        <!-- Show Users -->
         <section>
-
             <h2>Users</h2>
 
             <button onclick="getUsers()">
@@ -86,20 +71,17 @@
             </button>
 
             <div id="usersList"></div>
-
         </section>
 
     </main>
 
 
     <footer>
-
         <p>My Website</p>
-
     </footer>
 
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="script.js"></script>
 
 </body>
 
