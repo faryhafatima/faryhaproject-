@@ -1,17 +1,21 @@
 // Test backend
 function getMessage() {
+
     document.getElementById("result").innerText =
         "Netlify backend is connected!";
 }
 
 
 // Add user
-function addUser() {
+document.getElementById("userForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
 
-    fetch("/.netlify/functions/add-user", {
+    fetch("/.netlify/functions/users", {
+
         method: "POST",
 
         headers: {
@@ -22,8 +26,11 @@ function addUser() {
             name: name,
             email: email
         })
+
     })
+
     .then(response => response.json())
+
     .then(data => {
 
         document.getElementById("userResult").innerText =
@@ -33,18 +40,28 @@ function addUser() {
         document.getElementById("email").value = "";
 
         getUsers();
+
     })
+
     .catch(error => {
-        console.log(error);
+
+        console.error(error);
+
+        document.getElementById("userResult").innerText =
+            "Error adding user.";
+
     });
-}
+
+});
 
 
 // Get users
 function getUsers() {
 
-    fetch("/.netlify/functions/get-users")
+    fetch("/.netlify/functions/users")
+
         .then(response => response.json())
+
         .then(users => {
 
             let output = "";
@@ -52,18 +69,26 @@ function getUsers() {
             users.forEach(user => {
 
                 output += `
-                    <p>
-                        Name: ${user.name} |
-                        Email: ${user.email}
-                    </p>
+                    <div class="user">
+                        <strong>ID:</strong> ${user.id}<br>
+                        <strong>Name:</strong> ${user.name}<br>
+                        <strong>Email:</strong> ${user.email}
+                    </div>
                 `;
 
             });
 
             document.getElementById("usersList").innerHTML =
                 output || "<p>No users found.</p>";
+
         })
+
         .catch(error => {
-            console.log(error);
+
+            console.error(error);
+
+            document.getElementById("usersList").innerHTML =
+                "<p>Error loading users.</p>";
+
         });
 }
